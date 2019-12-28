@@ -3,7 +3,12 @@ h1, h2, h3 {
   user-select: none;
 }
 
+header {
+  text-align: center;
+}
+
 h1 {
+  display: inline-block;
   font-family: 'Indie Flower', cursive;
 }
 
@@ -26,17 +31,21 @@ h2 {
   padding: 15px 25px;
   width: 6em;
   height: 1em;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   user-select: none;
-  background: rgb(190, 190, 190);
+  background: rgb(56, 56, 56);
 }
 
 .button:hover {
-  background: rgb(207, 207, 207);
+  background: rgb(71, 71, 71);
 }
 
 .button:active {
-  background: rgb(150, 150, 150);
+  background: rgb(26, 26, 26);
+}
+
+#start, #stop, #reset {
+  color: rgb(0, 0, 0);
 }
 
 #start {
@@ -87,15 +96,16 @@ h2 {
 }
 
 #container {
+  position: relative;
   display: grid;
   margin: 1em auto;
-  padding: 4em 1em;
+  padding: 1em 30em;
   justify-content: center;
   grid-template-rows: 25% 50% 25%;
   grid-template-columns: auto auto auto;
   border: 1px solid rgb(0, 0, 0);
   box-shadow: 1px 1px #383838;
-  border-radius: 15px;
+  border-radius: 300px;
   background: rgb(225, 228, 51);
   width: 30em;
   height: 20em;
@@ -119,19 +129,26 @@ h2 {
   padding: 10px 5px;
   width: 5em;
   height: 1em;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   user-select: none;
-  background: rgb(133, 133, 133);
+  background: rgb(192, 192, 192);
 }
 
 .small-button:hover {
-  background: rgb(146, 146, 146);
+  background: rgb(216, 216, 216);
 }
 
 .small-button:active {
-  background: rgb(87, 87, 87);
+  background: rgb(167, 166, 166);
+}
+
+#banana {
+  width: 48px;
+  height: 48px;
+  margin-bottom: -5px;
 }
 
 html {
+  display: grid;
   background: rgb(207, 206, 147);
 }
