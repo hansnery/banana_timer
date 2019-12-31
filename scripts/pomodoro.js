@@ -53,6 +53,7 @@ longBreakButton.addEventListener("click", ()=> {
 
 setTimeButton.addEventListener("click", ()=> {
     inputNumber = prompt("Please enter the number of minutes (max: 60).");
+    inputNumber = parseInt(inputNumber);
     if (isNaN(inputNumber)) {
         resetDisplay();
         return;
@@ -65,6 +66,7 @@ setTimeButton.addEventListener("click", ()=> {
     }
     inputNumber = 0;
     inputNumber = prompt("Please enter the number of seconds.");
+    inputNumber = parseInt(inputNumber);
     if (isNaN(inputNumber)) {
         resetDisplay();
         return;
@@ -92,6 +94,7 @@ setTimeButton.addEventListener("click", ()=> {
 
 setBreakButton.addEventListener("click", ()=> {
     inputNumber = prompt("Please enter the number of minutes (max: 60).");
+    inputNumber = parseInt(inputNumber);
     if (isNaN(inputNumber)) {
         resetDisplay();
         return;
@@ -104,6 +107,7 @@ setBreakButton.addEventListener("click", ()=> {
     }
     inputNumber = 0;
     inputNumber = prompt("Please enter the number of seconds.");
+    inputNumber = parseInt(inputNumber);
     if (isNaN(inputNumber)) {
         resetDisplay();
         return;
