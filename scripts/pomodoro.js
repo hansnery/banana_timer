@@ -11,6 +11,7 @@ const setBreakButton = document.getElementById("set-break");
 let minutes = 25;
 let seconds = 0;
 let pause = false;
+let setBreak = false;
 
 function prependZero(number) {
     if (number < 10) {
@@ -52,6 +53,10 @@ longBreakButton.addEventListener("click", ()=> {
 
 setTimeButton.addEventListener("click", ()=> {
     inputNumber = prompt("Please enter the number of minutes (max: 60).");
+    if (isNaN(inputNumber)) {
+        resetDisplay();
+        return;
+    }
     if (inputNumber <= 60) {
         minutes = inputNumber;
     }   else {
@@ -60,6 +65,10 @@ setTimeButton.addEventListener("click", ()=> {
     }
     inputNumber = 0;
     inputNumber = prompt("Please enter the number of seconds.");
+    if (isNaN(inputNumber)) {
+        resetDisplay();
+        return;
+    }
     if (inputNumber > 59) {
         secondsLeft = inputNumber;
         inputNumber = inputNumber / 60;
@@ -78,10 +87,46 @@ setTimeButton.addEventListener("click", ()=> {
             seconds = inputNumber;
         }
     }
-    if (inputNumber == null) {
-        resetDisplay();
-    }
     updateDisplay();
+});
+
+setBreakButton.addEventListener("click", ()=> {
+    inputNumber = prompt("Please enter the number of minutes (max: 60).");
+    if (isNaN(inputNumber)) {
+        resetDisplay();
+        return;
+    }
+    if (inputNumber <= 60) {
+        breakMinutes = inputNumber;
+    }   else {
+        cantFocus();
+        return;
+    }
+    inputNumber = 0;
+    inputNumber = prompt("Please enter the number of seconds.");
+    if (isNaN(inputNumber)) {
+        resetDisplay();
+        return;
+    }
+    if (inputNumber > 59) {
+        secondsLeft = inputNumber;
+        inputNumber = inputNumber / 60;
+        secondsLeft = secondsLeft - parseInt(inputNumber, 10) * 60;
+        breakMinutes = parseInt(minutes, 10) + parseInt(inputNumber, 10);
+        breakSeconds = secondsLeft;
+        if (breakMinutes > 60 && inputNumber > 0) {
+            cantFocus();
+            return;
+        }
+    }   else {
+        if (breakMinutes > 59 && inputNumber > 0) {
+            cantFocus();
+            return;
+        }   else {
+            breakSeconds = inputNumber;
+        }
+    }
+    setBreak = true;
 });
 
 updateDisplay();
@@ -96,8 +141,14 @@ startButton.addEventListener("click", ()=> {
         }
         updateDisplay();
         if (minutes == 0 && seconds == 0 && pause == false) {
-            minutes = 5;
-            seconds = 0;
+            if (setBreak) {
+                minutes = breakMinutes;
+                seconds = breakSeconds;
+                setBreak = false;
+            }   else {
+                minutes = 5;
+                seconds = 0;
+            }
             pause = true;
         }
         if (minutes == 0 && seconds == 0 && pause == true) {
