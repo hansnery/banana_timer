@@ -3,10 +3,18 @@ const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
 const resetButton = document.getElementById("reset");
 
-let minutes = 0
-let seconds = 10
+let minutes = 0;
+let seconds = 10;
 
-clockDisplay.innerHTML = minutes + ":" + seconds
+function prependZero(number) {
+    if (number < 10) {
+        return "0" + number;
+    }   else {
+        return number;
+    }
+}
+
+clockDisplay.innerHTML = prependZero(minutes) + ":" + prependZero(seconds);
 
 const timerGoes = function() {
     if (seconds < 1 && minutes > 0) {
@@ -15,13 +23,13 @@ const timerGoes = function() {
     }   else {
         seconds--;
     }
-    clockDisplay.innerHTML = minutes + ":" + seconds;
+    clockDisplay.innerHTML = prependZero(minutes) + ":" + prependZero(seconds);
     if (minutes == 0 && seconds == 0) {
         stopTimer();
     }
 }
 
-const timer = setInterval(function() {
+const timer = setInterval(()=> {
     timerGoes();
 }, 1000);
 
